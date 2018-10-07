@@ -1,0 +1,16 @@
+-I/mnt/shared/qtDemo/sample/linux/../../osdk-core/api/inc
+-I/mnt/shared/qtDemo/sample/linux/../../osdk-core/utility/inc
+-I/mnt/shared/qtDemo/sample/linux/../../osdk-core/hal/inc
+-I/mnt/shared/qtDemo/sample/linux/../../osdk-core/protocol/inc
+-I/mnt/shared/qtDemo/sample/linux/../../osdk-core/platform/linux/inc
+-I/mnt/shared/qtDemo/sample/linux/qt-demo/../common
+-I/usr/local/Trolltech/Qt-4.8.6/include
+-I/usr/local/Trolltech/Qt-4.8.6/include/QtGui
+-I/usr/local/Trolltech/Qt-4.8.6/include/QtCore
+-I/mnt/shared/qtDemo/build/sample/linux/qt-demo
+-D$<$<NOT:$<CONFIG:Debug>>:QT_NO_DEBUG>
+-DQT_GUI_LIB
+-DQT_CORE_LIB
+-o
+/mnt/shared/qtDemo/build/sample/linux/qt-demo/moc_dialog.cxx
+/mnt/shared/qtDemo/sample/linux/qt-demo/dialog.h

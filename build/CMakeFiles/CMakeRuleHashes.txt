@@ -1,0 +1,6 @@
+# Hashes of file build rules.
+09d21de838657326fd69a56f2324d7aa sample/linux/qt-demo/moc_cthread.cxx
+b5d9e56fc113c7ea052e2ef389f4e914 sample/linux/qt-demo/moc_dialog.cxx
+f92af4c80674911b2213ac9a73c7e3ce sample/linux/qt-demo/moc_widget.cxx
+ebcfc9ca4ee5ee55c560d955c7fa9a7a sample/linux/qt-demo/ui_dialog.h
+c02946ec85d35696b8b38840932586bd sample/linux/qt-demo/ui_widget.h

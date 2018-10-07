@@ -80,6 +80,9 @@ getBroadcastData(DJI::OSDK::Vehicle* vehicle, int responseTimeout)
               << ", " << globalPosition.altitude << "\n";
     std::cout << "RC Commands           (r/p/y/thr)     = " << rc.roll << ", "
               << rc.pitch << ", " << rc.yaw << ", " << rc.throttle << "\n";
+
+    std::cout << "RC Commands           (gear/mode)     = " << rc.gear << ", "
+              << rc.mode << "\n";
     std::cout << "Velocity              (vx,vy,vz)      = " << velocity.x
               << ", " << velocity.y << ", " << velocity.z << "\n";
     std::cout << "Attitude Quaternion   (w,x,y,z)       = " << quaternion.q0
