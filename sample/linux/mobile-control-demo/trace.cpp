@@ -1,5 +1,6 @@
 #include "trace.hpp"
 using namespace std;
+
 Trace::Trace()
 {
 }
@@ -14,7 +15,7 @@ Trace::print_menu()
 	return true;
 }
 bool
-Trace::push(HUST::FlightData data)
+Trace::push(DATA::FlightData data)
 {
 	flight_data.push_back(data);
 	return true;
@@ -26,7 +27,7 @@ Trace::save(std::string trace_nick_name, std::string describe)
 	return true;
 }
 bool
-Trace::get(std::string trace_nick_name, vector<HUST::FlightData> &vec_data)
+Trace::get(std::string trace_nick_name, vector<DATA::FlightData> &vec_data)
 {
 	// 查询数据库，对每一行数据封装进fd， 然后装进 flight_data 返回。
 	db_helper.select_menu(trace_nick_name, vec_data);
@@ -36,7 +37,7 @@ bool
 Trace::clear()
 {
     std::cout << "clear flight data" << std::endl;
-    vector<HUST::FlightData>().swap(flight_data);
+    vector<DATA::FlightData>().swap(flight_data);
 }
 string
 Trace::get_trace()
@@ -47,7 +48,7 @@ Trace::get_trace()
 bool Trace::save_delta(std::string nick_name)
 {
     ofstream file("./" + nick_name);
-    std::cout << "save delta data." << std::endl;
+    std::cout << "save delta data..." << std::endl;
     for(int i = 0; i < flight_data.size(); i++)
     {
         file << flight_data[i].pos.x << " " << flight_data[i].pos.y << " " << flight_data[i].pos.z << " "
@@ -55,6 +56,7 @@ bool Trace::save_delta(std::string nick_name)
              << flight_data[i].att.roll << " " << flight_data[i].att.pitch << " " << flight_data[i].att.yaw <<std::endl;
     }
     file.close();
+    std::cout << "complete！" << std::endl;
 }
 void Trace::get_and_save(std::string trace_nick_name, std::string nick_name)
 {

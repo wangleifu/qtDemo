@@ -1,6 +1,6 @@
-#ifndef HUST_H
-#define HUST_H
-namespace HUST
+#ifndef DATA_H
+#define DATA_H
+namespace DATA
 {	
 	typedef float  float32_t;
 

@@ -64,14 +64,14 @@ DBHelper::select_menu_and_print()
 	return true;
 }
 bool
-DBHelper::select_menu(string nick_name, vector<HUST::FlightData> &data)
+DBHelper::select_menu(string nick_name, vector<DATA::FlightData> &data)
 {
 	trace_table = DBHelper::get_table_name(nick_name);
 	DBHelper::select_trace(data);
 	return true;
 }
 bool
-DBHelper::insert_menu(string nick_name, string describe, vector<HUST::FlightData> data)
+DBHelper::insert_menu(string nick_name, string describe, vector<DATA::FlightData> data)
 {
 	sql = "insert into "+ menu_table +
 	      "(trace_nick_name, trace_table_name, trace_create_date, trace_describe)"+
@@ -143,7 +143,7 @@ DBHelper::create_trace_table()
 	return true;
 }
 bool
-DBHelper::insert_trace(vector<HUST::FlightData> data)
+DBHelper::insert_trace(vector<DATA::FlightData> data)
 {
 	if(data.empty())
 	{
@@ -178,7 +178,7 @@ DBHelper::insert_trace(vector<HUST::FlightData> data)
 	return true;
 }
 bool
-DBHelper::select_trace(vector<HUST::FlightData> &data)
+DBHelper::select_trace(vector<DATA::FlightData> &data)
 {
 	sql = "select * from " + trace_table;
 	DBHelper::exeUpdateSQL(sql);
@@ -196,18 +196,18 @@ DBHelper::select_trace(vector<HUST::FlightData> &data)
 			std::cout << "Failed while getting data from database." << endl;
 			return false;
 		}
-		fd.pos.x         = DBHelper::stringToNum<HUST::float32_t>(row[0]);
-		fd.pos.y         = DBHelper::stringToNum<HUST::float32_t>(row[1]);
-		fd.pos.z         = DBHelper::stringToNum<HUST::float32_t>(row[2]);
-		fd.vel.Vx        = DBHelper::stringToNum<HUST::float32_t>(row[3]);
-		fd.vel.Vy        = DBHelper::stringToNum<HUST::float32_t>(row[4]);
-		fd.vel.Vz        = DBHelper::stringToNum<HUST::float32_t>(row[5]);
-		fd.att.roll      = DBHelper::stringToNum<HUST::float32_t>(row[6]);
-		fd.att.pitch     = DBHelper::stringToNum<HUST::float32_t>(row[7]);
-		fd.att.yaw       = DBHelper::stringToNum<HUST::float32_t>(row[8]);
-		fd.ang.rollRate  = DBHelper::stringToNum<HUST::float32_t>(row[9]);
-		fd.ang.pitchRate = DBHelper::stringToNum<HUST::float32_t>(row[10]);
-		fd.ang.yawRate   = DBHelper::stringToNum<HUST::float32_t>(row[11]);
+        fd.pos.x         = DBHelper::stringToNum<DATA::float32_t>(row[0]);
+        fd.pos.y         = DBHelper::stringToNum<DATA::float32_t>(row[1]);
+        fd.pos.z         = DBHelper::stringToNum<DATA::float32_t>(row[2]);
+        fd.vel.Vx        = DBHelper::stringToNum<DATA::float32_t>(row[3]);
+        fd.vel.Vy        = DBHelper::stringToNum<DATA::float32_t>(row[4]);
+        fd.vel.Vz        = DBHelper::stringToNum<DATA::float32_t>(row[5]);
+        fd.att.roll      = DBHelper::stringToNum<DATA::float32_t>(row[6]);
+        fd.att.pitch     = DBHelper::stringToNum<DATA::float32_t>(row[7]);
+        fd.att.yaw       = DBHelper::stringToNum<DATA::float32_t>(row[8]);
+        fd.ang.rollRate  = DBHelper::stringToNum<DATA::float32_t>(row[9]);
+        fd.ang.pitchRate = DBHelper::stringToNum<DATA::float32_t>(row[10]);
+        fd.ang.yawRate   = DBHelper::stringToNum<DATA::float32_t>(row[11]);
 		data.push_back(fd);
 	}
 
@@ -358,7 +358,7 @@ DBHelper::get_traces()
             traces += row[1];
             if (i != rowCount -1)
             {
-                traces += ",";
+                traces += "-";
             }
         }
 

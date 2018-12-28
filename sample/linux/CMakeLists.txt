@@ -32,12 +32,11 @@ endif()
 #add_subdirectory(flight-control)
 #add_subdirectory(mfio)
 #add_subdirectory(missions)
-#add_subdirectory(mobile)
-add_subdirectory(telemetry)
+add_subdirectory(mobile)
+#add_subdirectory(telemetry)
 #add_subdirectory(logging)
-#add_subdirectory(my_control)
-add_subdirectory(my_control_test)
-add_subdirectory(qt-demo)
+
+add_subdirectory(mobile-control-demo)
 
 
 if(ADVANCED_SENSING)

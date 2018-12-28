@@ -1,7 +1,7 @@
 #ifndef DBHELPER_H
 #define DBHELPER_H
 
-#include "hust.hpp"
+#include "data.hpp"
 
 #include<iostream>
 #include<string>
@@ -18,9 +18,9 @@ public:
 	// menu 表：增加，查询，修改，删除记录。
 	// bool update_menu(string id,string nick_name, string describe);
 	// bool delete_menu(string id);
-	bool select_menu(string nick_name, vector<HUST::FlightData> &data);
+    bool select_menu(string nick_name, vector<DATA::FlightData> &data);
 	bool select_menu_and_print();
-	bool insert_menu(string nick_name, string describe, vector<HUST::FlightData> data);
+    bool insert_menu(string nick_name, string describe, vector<DATA::FlightData> data);
 	bool delete_menu(string nick_name);
     string get_traces();
 
@@ -30,9 +30,9 @@ private:
 	bool   exeUpdateSQL(string sql);
 
 	// 各个trace 表: 创建表、批量插入，查询所有、删除表
-	bool select_trace(vector<HUST::FlightData> &data);
+    bool select_trace(vector<DATA::FlightData> &data);
 	bool create_trace_table();
-	bool insert_trace(vector<HUST::FlightData> data);
+    bool insert_trace(vector<DATA::FlightData> data);
 	bool drop_trace();
 
 	// 辅助
@@ -50,7 +50,7 @@ private:
 	string      trace_table;
 	string      sql;
 
-	HUST::FlightData  fd;
+    DATA::FlightData  fd;
 };
 
 #endif
