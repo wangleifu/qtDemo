@@ -1,8 +1,8 @@
 #include <QApplication>
 #include <QPlastiqueStyle>
 #include "widget.h"
-#include "flight_controller.hpp"
-//#include "mobile_communication.hpp"
+#include "controller.hpp"
+#include "mobile.hpp"
 
 using namespace DJI::OSDK;
 int main(int argc, char *argv[])
@@ -20,9 +20,14 @@ int main(int argc, char *argv[])
         std::cout << "Vehicle not initialized, exiting.\n";
         return -1;
     }
+    std::cout << "vehicle.." << std::endl;
 
-    Controller ctr(vehicle);
-    w.set_controller(&ctr);
+    //FlightController f_controller(vehicle);
+    Controller controller(vehicle,&w);
+    w.set_controller(&controller);
+
+    Mobile mobile(&controller);
+    mobile.initMSDKParsing(vehicle, &linuxEnvironment);
 
     w.show();
     return a.exec();

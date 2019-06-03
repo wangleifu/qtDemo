@@ -37,6 +37,7 @@ main(int argc, char** argv)
 {
   DSTATUS("Logging is completely independent of DJI::OSDK::Vehicle.");
   DSTATUS("In this example, we don't instantiate a Vehicle at all.\n");
+  //DJI::OSDK::Log::instance().enableDebugLogging();
   // Display interactive prompt
   std::cout
     << "| Available commands:                                            |"

@@ -2,10 +2,10 @@
 #include <QPlastiqueStyle>
 #include "widget.h"
 #include "flight_controller.hpp"
-//#include "mobile_communication.hpp"
+#include "mobile_communication.hpp"
 
 using namespace DJI::OSDK;
-int main(int argc, char *argv[])
+int main(int argc, char* argv)
 {
     QApplication a(argc, argv);
     a.setStyle(new QPlastiqueStyle);
@@ -21,8 +21,10 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    Controller ctr(vehicle);
-    w.set_controller(&ctr);
+    Controller controller(vehicle);
+    MobileService mobileService(vehicle, linuxEnvironment, &controller);
+    
+    w.setController(&controller);
 
     w.show();
     return a.exec();

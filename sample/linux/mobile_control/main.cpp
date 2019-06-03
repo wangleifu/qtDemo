@@ -2,7 +2,7 @@
 #include <QPlastiqueStyle>
 #include "widget.h"
 #include "flight_controller.hpp"
-//#include "mobile_communication.hpp"
+#include "mobile_communication.hpp"
 
 using namespace DJI::OSDK;
 int main(int argc, char *argv[])
@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 
     Controller ctr(vehicle);
     w.set_controller(&ctr);
+
+   	setupMSDKParsing(vehicle, linuxEnvironment);
 
     w.show();
     return a.exec();

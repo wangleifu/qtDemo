@@ -22,28 +22,33 @@
 
 
 cmake_minimum_required(VERSION 2.8)
-project(onboardsdk-linux-samples)
+project(qt-demo)
+find_package(Qt4 REQUIRED)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -g -O0")
 
-if(NOT ONBOARDSDK_SOURCE)
-    set(ONBOARDSDK_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../../osdk-core")
-endif()
+include_directories(${ONBOARDSDK_SOURCE}/api/inc)
+include_directories(${ONBOARDSDK_SOURCE}/utility/inc)
+include_directories(${ONBOARDSDK_SOURCE}/hal/inc)
+include_directories(${ONBOARDSDK_SOURCE}/protocol/inc)
+include_directories(${ONBOARDSDK_SOURCE}/platform/linux/inc)
 
-add_subdirectory(camera-gimbal)
-add_subdirectory(flight-control)
-add_subdirectory(mfio)
-add_subdirectory(missions)
-add_subdirectory(mobile)
-add_subdirectory(telemetry)
-add_subdirectory(logging)
-add_subdirectory(mobile-control-demo)
-#add_subdirectory(my_control)
-#add_subdirectory(my_control_test)
-#add_subdirectory(qt-demo)
-#add_subdirectory(qt-mobile-demo)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../common)
 
+include(${QT_USE_FILE})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+QT4_WRAP_CPP(my-control-sample_MOC dialog.h cthread.h widget.h)
+QT4_WRAP_UI(my-control-sample_UI dialog.ui widget.ui)
 
-if(ADVANCED_SENSING)
-    add_definitions(-DADVANCED_SENSING)
-    message(STATUS "AdvancedSensing sample is enabled")
-    add_subdirectory(advanced-sensing)
-endif()
+FILE(GLOB SOURCE_FILES *.hpp *.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../common/dji_linux_environment.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../common/dji_linux_helpers.cpp
+        )
+
+link_directories(/usr/lin/x86_64-linux-gnu)
+
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${my-control-sample_MOC} ${my-control-sample_UI})
+
+target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} mysqlclient)
+target_link_libraries(${PROJECT_NAME} djiosdk-core)
+
